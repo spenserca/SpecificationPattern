@@ -30,10 +30,20 @@ namespace SpecificationPattern.Functions.Functions
             _logger.LogInformation("getting weather information with specification pattern");
             var querystring = QueryHelpers.ParseQuery(request.Url.Query);
             var summary = querystring.GetQueryStringValue("summary");
+            var id = querystring.GetQueryStringValue("id");
 
-            var forecasts = await _dbContext.WeatherForecasts
-                .Where(new WeatherForecastSummarySpecification(summary))
-                .ToListAsync();
+            var forecastsQuery = _dbContext.WeatherForecasts.AsQueryable();
+            if (!string.IsNullOrEmpty(summary))
+            {
+                forecastsQuery = forecastsQuery.Where(new WeatherForecastSummarySpecification(summary));
+            }
+
+            if (!string.IsNullOrEmpty(id))
+            {
+                forecastsQuery = forecastsQuery.Where(new WeatherForecastIdSpecification(Convert.ToInt32(id)));
+            }
+
+            var forecasts = await forecastsQuery.ToListAsync();
 
             var response = request.CreateResponse();
             await response.WriteAsJsonAsync(forecasts, HttpStatusCode.OK);
