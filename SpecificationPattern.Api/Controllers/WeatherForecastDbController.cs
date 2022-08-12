@@ -21,13 +21,13 @@ namespace SpecificationPattern.Controllers
             SpecificationPatternDbContext dbContext)
         {
             _logger = logger;
-            dbContext.Database.EnsureCreated();
             _dbContext = dbContext;
         }
 
         [HttpGet("/db")]
         public async Task<IEnumerable<WeatherForecast>> Get([FromQuery] string summary)
         {
+            _logger.LogInformation("getting weather information with direct ef");
             return await _dbContext.WeatherForecasts
                 .Where(wf => wf.Summary.Equals(summary, StringComparison.CurrentCultureIgnoreCase))
                 .ToListAsync();

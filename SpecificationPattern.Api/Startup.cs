@@ -23,13 +23,20 @@ namespace SpecificationPattern
         {
             services.AddDbContext<SpecificationPatternDbContext>(o =>
             {
-                o.UseInMemoryDatabase("SpecificationPattern");
+                o.UseInMemoryDatabase("SpecificationPatternApi");
             });
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpecificationPattern", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SpecificationPatternApi", Version = "v1" });
             });
+
+            using (var serviceProvider = services.BuildServiceProvider())
+            {
+                var dbContext = serviceProvider.GetRequiredService<SpecificationPatternDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,5 +1,7 @@
 using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using SpecificationPattern.Common.Models;
 
 namespace SpecificationPattern.Common
@@ -87,6 +89,16 @@ namespace SpecificationPattern.Common
                         Summary = "Hot",
                         TemperatureC = 160
                     });
+        }
+
+        public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<SpecificationPatternDbContext>
+        {
+            public SpecificationPatternDbContext CreateDbContext(string[] args)
+            {
+                var builder = new DbContextOptionsBuilder<SpecificationPatternDbContext>();
+                builder.UseInMemoryDatabase("SpecificationPatternApi");
+                return new SpecificationPatternDbContext(builder.Options);
+            }
         }
     }
 }

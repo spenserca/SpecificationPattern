@@ -13,14 +13,13 @@ namespace SpecificationPattern.Controllers
     [Route("/forecasts")]
     public class WeatherForecastSpecController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastDbController> _logger;
+        private readonly ILogger<WeatherForecastSpecController> _logger;
         private readonly SpecificationPatternDbContext _dbContext;
 
-        public WeatherForecastSpecController(ILogger<WeatherForecastDbController> logger,
+        public WeatherForecastSpecController(ILogger<WeatherForecastSpecController> logger,
             SpecificationPatternDbContext dbContext)
         {
             _logger = logger;
-            dbContext.Database.EnsureCreated();
             _dbContext = dbContext;
         }
 
