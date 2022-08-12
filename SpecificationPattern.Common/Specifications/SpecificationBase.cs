@@ -6,7 +6,7 @@ namespace SpecificationPattern.Common.Specifications
 {
     public abstract class SpecificationBase<T> : ISpecification<T>
     {
-        public Expression<Func<T, bool>> Criteria { get; set; }
+        public Expression<Func<T, bool>> Criteria { get; set; } = T => true;
         public List<Expression<Func<T, object>>> Includes { get; } = new();
         
         /// <summary>
