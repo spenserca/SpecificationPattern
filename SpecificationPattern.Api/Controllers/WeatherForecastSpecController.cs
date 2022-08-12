@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using SpecificationPattern.Common;
+using SpecificationPattern.Common.Models;
 using SpecificationPattern.Specifications;
 
 namespace SpecificationPattern.Controllers
 {
     [ApiController]
     [Route("/forecasts")]
-    public class WeatherForecastController : ControllerBase
+    public class WeatherForecastSpecController : ControllerBase
     {
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<WeatherForecastDbController> _logger;
         private readonly SpecificationPatternDbContext _dbContext;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger,
+        public WeatherForecastSpecController(ILogger<WeatherForecastDbController> logger,
             SpecificationPatternDbContext dbContext)
         {
             _logger = logger;
@@ -24,17 +24,10 @@ namespace SpecificationPattern.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("/where")]
+        [HttpGet("/spec")]
         public async Task<IEnumerable<WeatherForecast>> Get([FromQuery] string summary)
         {
-            return await _dbContext.WeatherForecasts
-                .Where(wf => wf.Summary.Equals(summary, StringComparison.CurrentCultureIgnoreCase))
-                .ToListAsync();
-        }
-
-        [HttpGet("/specification")]
-        public async Task<IEnumerable<WeatherForecast>> Post([FromQuery] string summary)
-        {
+            _logger.LogInformation("getting weather information with specification pattern");
             return await _dbContext.WeatherForecasts
                 .Where(new WeatherForecastSummarySpecification(summary))
                 .ToListAsync();

@@ -1,4 +1,5 @@
 ﻿using System;
+using SpecificationPattern.Common.Models;
 
 namespace SpecificationPattern.Specifications
 {

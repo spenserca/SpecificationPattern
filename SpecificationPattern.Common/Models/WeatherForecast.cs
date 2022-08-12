@@ -1,6 +1,6 @@
 using System;
 
-namespace SpecificationPattern
+namespace SpecificationPattern.Common.Models
 {
     public class WeatherForecast
     {

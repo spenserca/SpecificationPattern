@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using Microsoft.EntityFrameworkCore;
+using SpecificationPattern.Common.Models;
 
-namespace SpecificationPattern
+namespace SpecificationPattern.Common
 {
     public class SpecificationPatternDbContext : DbContext
     {

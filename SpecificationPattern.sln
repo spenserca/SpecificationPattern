@@ -1,6 +1,10 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern", "SpecificationPattern\SpecificationPattern.csproj", "{070072E3-10E7-4AD1-B48B-A6D53FCB6DC4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern.Api", "SpecificationPattern.Api\SpecificationPattern.Api.csproj", "{070072E3-10E7-4AD1-B48B-A6D53FCB6DC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern.Functions", "SpecificationPattern.Functions\SpecificationPattern.Functions.csproj", "{81EEA4B8-8661-4E0D-BA60-83E116301C9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecificationPattern.Common", "SpecificationPattern.Common\SpecificationPattern.Common.csproj", "{89516326-41CB-403E-A07E-6FE31DCA74BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +16,13 @@ Global
 		{070072E3-10E7-4AD1-B48B-A6D53FCB6DC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{070072E3-10E7-4AD1-B48B-A6D53FCB6DC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{070072E3-10E7-4AD1-B48B-A6D53FCB6DC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81EEA4B8-8661-4E0D-BA60-83E116301C9D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81EEA4B8-8661-4E0D-BA60-83E116301C9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81EEA4B8-8661-4E0D-BA60-83E116301C9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81EEA4B8-8661-4E0D-BA60-83E116301C9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89516326-41CB-403E-A07E-6FE31DCA74BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89516326-41CB-403E-A07E-6FE31DCA74BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89516326-41CB-403E-A07E-6FE31DCA74BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89516326-41CB-403E-A07E-6FE31DCA74BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
