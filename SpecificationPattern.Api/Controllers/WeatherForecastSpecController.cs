@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SpecificationPattern.Common;
 using SpecificationPattern.Common.Models;
-using SpecificationPattern.Specifications;
+using SpecificationPattern.Common.Specifications;
 
 namespace SpecificationPattern.Controllers
 {

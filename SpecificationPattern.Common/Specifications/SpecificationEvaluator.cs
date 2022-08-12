@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace SpecificationPattern.Specifications
+namespace SpecificationPattern.Common.Specifications
 {
     // TODO: where TEntity: BaseEntity
     public class SpecificationEvaluator<TEntity>

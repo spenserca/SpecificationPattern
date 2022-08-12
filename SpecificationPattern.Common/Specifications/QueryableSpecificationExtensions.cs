@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
-namespace SpecificationPattern.Specifications
+namespace SpecificationPattern.Common.Specifications
 {
     public static class QueryableSpecificationExtensions
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using SpecificationPattern.Common.Models;
 
-namespace SpecificationPattern.Specifications
+namespace SpecificationPattern.Common.Specifications
 {
     public class WeatherForecastSummarySpecification: SpecificationBase<WeatherForecast>
     {

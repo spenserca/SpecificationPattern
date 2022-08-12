@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Primitives;
 using SpecificationPattern.Common;
-using SpecificationPattern.Specifications;
+using SpecificationPattern.Common.Specifications;
 
 namespace SpecificationPattern.Functions.Functions
 {
