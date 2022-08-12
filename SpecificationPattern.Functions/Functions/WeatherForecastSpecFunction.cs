@@ -1,11 +1,10 @@
 using System.Net;
-using System.Threading.Tasks;
-using Azure;
-using Azure.Core;
+using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Primitives;
 using SpecificationPattern.Common;
 using SpecificationPattern.Specifications;
 
@@ -16,10 +15,10 @@ namespace SpecificationPattern.Functions.Functions
         private readonly ILogger<WeatherForecastSpecFunction> _logger;
         private readonly SpecificationPatternDbContext _dbContext;
 
-        public WeatherForecastSpecFunction(ILogger<WeatherForecastSpecFunction> logger, SpecificationPatternDbContext dbContext)
+        public WeatherForecastSpecFunction(ILogger<WeatherForecastSpecFunction> logger,
+            SpecificationPatternDbContext dbContext)
         {
             _logger = logger;
-            dbContext.Database.EnsureCreated();
             _dbContext = dbContext;
         }
 
@@ -28,15 +27,17 @@ namespace SpecificationPattern.Functions.Functions
             [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "forecasts/spec")]
             HttpRequestData request)
         {
-            var summary = string.Empty;
-            
             _logger.LogInformation("getting weather information with specification pattern");
+            var querystring = QueryHelpers.ParseQuery(request.Url.Query);
+            var summary = querystring.GetQueryStringValue("summary");
+
             var forecasts = await _dbContext.WeatherForecasts
                 .Where(new WeatherForecastSummarySpecification(summary))
                 .ToListAsync();
-            
-            var response = Request.CreateResponse();
-            await response.WriteAsJsonAsync(Response.Content, Response.StatusCode, cancellationToken);
+
+            var response = request.CreateResponse();
+            await response.WriteAsJsonAsync(forecasts, HttpStatusCode.OK);
+            return response;
         }
     }
 }
